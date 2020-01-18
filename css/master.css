@@ -1,0 +1,19 @@
+body {
+  background-color: lightblue;
+  color: black;
+  padding: 40px;
+  text-align: center;
+}
+
+.direita {
+    margin-left: 206px;
+    background-color:#00FF66;
+    height:1000px;
+}
+
+.esquerda {
+    float: left;
+    background-color:#CCCCCC;
+    width:206px;
+    height:1000px;
+}
