@@ -1,6 +1,6 @@
 <?php
     include_once('controller/functions.php');
-    include_once('persistence/config.php');
+    include_once('controller/config.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt">

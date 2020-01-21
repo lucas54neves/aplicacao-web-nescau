@@ -1,27 +1,30 @@
 <?php
     include_once('functions.php');
-    include_once('../persistence/config.php');
+    include_once('../persistence/connection.php');
+    include_once('../persistence/postagemDAO.php');
+    include_once('../model/postagem.php');
 
     // Pega os dados do formulario
-    $postagem = isset($_POST['postagem']) ? $_POST['postagem'] : null;
+    $mensagem = isset($_POST['postagem']) ? $_POST['postagem'] : null;
 
     // Valida dados vazios
-    if (empty($postagem)) {
+    if (empty($mensagem)) {
         echo "Volte e preencha todos os campos";
         exit;
     }
 
-    // Insere no banco de dados
-    $PDO = db_connect();
-    $sql = "INSERT INTO `postagem`(`usuario_idusuario`, `mensagem`) VALUES (" . $_SESSION['id'] . ",'" . $postagem . "')";
-    $stmt = $PDO->prepare($sql);
+    $conexao = new Connection();
+    $conexao = $conexao->getConnection();
 
-    // Executa a insercao
-    if ($stmt->execute()) {
+    $postagem = new Postagem($_SESSION['id'], $mensagem);
+
+    // Insere no banco de dados
+    $postagemDAO = new PostagemDAO();
+    if ($postagemDAO->cadastrar($conexao, $postagem)) {
         header('Location: ../view/tela-postagem.php');
     }
     else {
         echo "Erro ao cadastrar";
-        print_r($stmt->errorInfo());
+        header('Location: ../index.php');
     }
 ?>

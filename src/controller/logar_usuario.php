@@ -1,6 +1,6 @@
 <?php
-    include_once('functions.php');
-    include_once('../persistence/config.php');
+    include_once('../persistence/connection.php');
+    include_once('../persistence/usuarioDAO.php');
 
     // Pega os dados do formulario
     $login = isset($_POST['login']) ? $_POST['login'] : '';
@@ -14,26 +14,9 @@
 
     // Cria hash da senha
 
-    // Verifica banco de dados
-    $PDO = db_connect();
-    $sql = "SELECT idusuario, nome FROM usuario WHERE login = '" . $login . "' AND senha = '" . $senha . "'";
-    $stmt = $PDO->prepare($sql);
-    $stmt->execute();
-    $users = $stmt->fetchALL(PDO::FETCH_ASSOC);
+    $conexao = new Connection();
+    $conexao = $conexao->getConnection();
 
-    if (count($users) <= 0) {
-        echo "Login e senha incorretos";
-        exit;
-    } else {
-        // Pega o primeiro usuario
-        $user = $users[0];
-
-        session_start();
-        $_SESSION['logged_in'] = true;
-        $_SESSION['id'] = $user['idusuario'];
-        $_SESSION['login'] = $login;
-        $_SESSION['senha'] = $senha;
-    }
-
-    header('Location: ../index.php')
+    $usuarioDAO = new UsuarioDAO();
+    $usuarioDAO->logar($conexao, $login, $senha);
 ?>

@@ -1,6 +1,6 @@
 <?php
     include_once('../controller/functions.php');
-    include_once('../persistence/config.php');
+    include_once('../controller/config.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -13,10 +13,20 @@
     <body>
         <h1>Aplicação WEB Nescau</h1>
         <h2>Tela de Login</h2>
-        <?php if (isLoggedIn()): ?>
-            <p>Olá, <?php echo $_SESSION['user_name']; ?>. <a href="panel.php">Painel</a> | <a href="logout.php">Sair</a></p>
-        <?php else: ?>
-            <p>Olá, visitante. <a href="formulario_login.php">Login</a></p>
+        <?php if (isLoggedIn()): {?>
+            <p>Olá, <?php echo $_SESSION['nome']; ?></p>
+            <form>
+                <button type='submit' formaction='tela-postagem.php'>Área de postagem</button>
+            </form>
+            <br>
+            <form>
+                <button type='submit' formaction='../controller/sair.php'>Sair</button>
+            </form>
+        <?php } else: ?>
+            <p>Olá, visitante.</p>
+            <form>
+                <button type='submit' formaction='formulario_login.php'>Login</button>
+            </form>
         <?php endif; ?>
         </form>
     </body>

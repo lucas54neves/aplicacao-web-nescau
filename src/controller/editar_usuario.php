@@ -9,7 +9,8 @@
 
     // Valida dados vazios
     if (empty($login) || empty($senha) || empty($nome)) {
-        echo "Volte e preencha todos os campos";
+        echo "<script>alert('Volte e preencha todos os campos')</script>";
+        header('Location: ../view/tela-edicao.php');
         exit;
     }
 

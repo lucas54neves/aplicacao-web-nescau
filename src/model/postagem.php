@@ -4,14 +4,9 @@
         private $idUsuario;
         private $mensagem;
 
-        function __contruct($idPostagem, $idUsuario, $mensagem) {
-            $this->idPostagem = $idPostagem;
+        function __construct($idUsuario, $mensagem) {
             $this->idUsuario= $idUsuario;
             $this->mensagem = $mensagem;
-        }
-
-        function getIdPostagem() {
-            return $this->idPostagem;
         }
 
         function getIdUsuario() {

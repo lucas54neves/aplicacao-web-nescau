@@ -1,19 +1,13 @@
 <?php
-    class Postagem {
-        private $idUsuario;
+    class Usuario {
         private $login;
         private $senha;
         private $nome;
 
-        function __contruct($idUsuario, $login, $senha, $nome) {
-            $this->idUsuario = $idUsuario;
+        function __construct($login, $senha, $nome) {
             $this->login = $login;
             $this->senha = $senha;
             $this->nome = $nome;
-        }
-
-        function getIdUsuario() {
-            return $this->idUsuario;
         }
 
         function getLogin() {

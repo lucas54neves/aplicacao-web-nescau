@@ -1,6 +1,7 @@
 <?php
-    include_once('functions.php');
-    include_once('../persistence/config.php');
+    include_once('../persistence/connection.php');
+    include_once('../persistence/usuarioDAO.php');
+    include_once('../model/usuario.php');
 
     // Pega os dados do formulario
     $login = isset($_POST['login']) ? $_POST['login'] : null;
@@ -13,20 +14,19 @@
         exit;
     }
 
-    // Insere no banco de dados
-    $PDO = db_connect();
-    $sql = "INSERT INTO `usuario`(`login`, `senha`, `nome`) VALUES (:login, :senha, :nome)";
-    $stmt = $PDO->prepare($sql);
-    $stmt->bindParam(':login', $login);
-    $stmt->bindParam(':senha', $senha);
-    $stmt->bindParam(':nome', $nome);
+    // Cria conexao com banco de dados
+    $conexao = new Connection();
+    $conexao = $conexao->getConnection();
 
-    // Executa a insercao
-    if ($stmt->execute()) {
+    // Cria o objeto com os dados
+    $usuario = new Usuario($login, $senha, $nome);
+
+    // Insere no banco de dados
+    $usuarioDAO = new UsuarioDAO();
+    if ($usuarioDAO->cadastrar($conexao, $usuario)) {
         header('Location: ../index.php');
     }
     else {
         echo "Erro ao cadastrar";
-        print_r($stmt->errorInfo());
     }
 ?>

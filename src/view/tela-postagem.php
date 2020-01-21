@@ -1,3 +1,10 @@
+<?php
+    include_once('../controller/functions.php');
+    include_once('../controller/config.php');
+    include_once('../persistence/usuarioDAO.php');
+    include_once('../persistence/postagemDAO.php');
+    include_once('../persistence/connection.php');
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,52 +18,20 @@
         <div id="geral">
             <div id="esquerda">
                 <?php
-                    include_once('../controller/functions.php');
-                    include_once('../persistence/config.php');
+                    $conexao = new Connection();
+                    $conexao = $conexao->getConnection();
 
-                    echo "<h1 align='center'>Usuários</h1>";
-                    echo "<table align='center'";
-
-                    try {
-                        $PDO = db_connect();
-                        $PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stmt = $PDO->prepare("SELECT `nome` FROM `usuario` WHERE 1");
-                        $stmt->execute();
-                        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                        foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
-                            echo $v;
-                        }
-                    }
-                    catch(PDOException $e) {
-                        echo "Error: " . $e->getMessage();
-                    }
-                    $PDO = null;
-                    echo "</table>";
+                    $usuarioDAO = new UsuarioDAO();
+                    $usuarioDAO->consultar($conexao);
                 ?>
             </div>
             <div id="meio">
                 <?php
-                    include_once('../controller/functions.php');
-                    include_once('../persistence/config.php');
+                    $conexao = new Connection();
+                    $conexao = $conexao->getConnection();
 
-                    echo "<h1 align='center'>Postagens</h1>";
-                    echo "<table align='center'";
-
-                    try {
-                        $PDO = db_connect();
-                        $PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stmt = $PDO->prepare("SELECT `mensagem` FROM `postagem` WHERE 1");
-                        $stmt->execute();
-                        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                        foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
-                            echo $v;
-                        }
-                    }
-                    catch(PDOException $e) {
-                        echo "Error: " . $e->getMessage();
-                    }
-                    $PDO = null;
-                    echo "</table>";
+                    $postagemDAO = new PostagemDAO();
+                    $postagemDAO->consultar($conexao);
                 ?>
                 <br>
                 <div align='center'>
@@ -90,6 +65,12 @@
                             echo "
                                 <form>
                                     <button type='submit' formaction='tela-edicao.php'>Editar dados</button>
+                                </form>
+                                ";
+                            echo "
+                                <br>
+                                <form>
+                                    <button type='submit' formaction='../controller/excluir-usuario.php'>Apagar conta</button>
                                 </form>
                                 ";
                         }
