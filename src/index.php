@@ -12,13 +12,26 @@
     </head>
     <body>
         <h1>Aplicação WEB Nescau</h1>
-        <?php if (isLoggedIn()): ?>
-            <li><a href='view/tela-edicao.php'>Tela de Edição</a></li>
-            <li><a href='view/tela-postagem.php'>Tela de Postagem</a></li>
-            <li><a href='controller/sair.php'>Sair</a></li>
-        <?php else: ?>
-            <li><a href='view/tela-login.php'>Login</a></li>
-            <li><a href='view/tela-cadastro.php'>Cadastrar</a></li>
+        <?php if (isLoggedIn()): {?>
+            <form>
+                <button type='submit' formaction='view/tela-edicao.php'>Editar dados</button>
+            </form>
+            <br>
+            <form>
+                <button type='submit' formaction='view/tela-postagem.php'>Área de postagem</button>
+            </form>
+            <br>
+            <form>
+                <button type='submit' formaction='controller/sair.php'>Deslogar</button>
+            </form>
+        <?php } else: ?>
+            <form>
+                <button type='submit' formaction='view/tela-login.php'>Logar</button>
+            </form>
+            <br>
+            <form>
+                <button type='submit' formaction='view/tela-cadastro.php'>Cadastrar</button>
+            </form>
         <?php endif; ?>
     </body>
 </html>

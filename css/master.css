@@ -1,19 +1,39 @@
 body {
-  background-color: lightblue;
-  color: black;
-  padding: 40px;
-  text-align: center;
+    background-color: lightblue;
+    color: black;
+    padding: 40px;
+    text-align: center;
+    margin:0;
 }
 
-.direita {
-    margin-left: 206px;
-    background-color:#00FF66;
-    height:1000px;
+#geral {
+    width:960px;
+    margin:0 auto;
+    background:#ddd;
 }
 
-.esquerda {
-    float: left;
-    background-color:#CCCCCC;
-    width:206px;
-    height:1000px;
+#direita {
+    float:right;
+    width:220px;
+    padding:10px;
+    background:#dff;
+}
+
+#meio {
+    float:left;
+    width:460px;
+    padding:10px;
+    background:#ddf;
+}
+
+#esquerda {
+    float:left;
+    width:220px;
+    padding:10px;
+    background:#bfb;
+}
+
+.centralizar {
+    margin-left: auto;
+    margin-right: auto;
 }

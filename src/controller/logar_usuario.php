@@ -16,25 +16,24 @@
 
     // Verifica banco de dados
     $PDO = db_connect();
-    $sql = "SELECT idusuario, nome FROM usuario WHERE login = :login AND senha = :senha";
+    $sql = "SELECT idusuario, nome FROM usuario WHERE login = '" . $login . "' AND senha = '" . $senha . "'";
     $stmt = $PDO->prepare($sql);
-    $stmt->bindParam(':login', $login);
-    $stmt->bindParam(':senha', $senha);
     $stmt->execute();
     $users = $stmt->fetchALL(PDO::FETCH_ASSOC);
 
     if (count($users) <= 0) {
         echo "Login e senha incorretos";
         exit;
+    } else {
+        // Pega o primeiro usuario
+        $user = $users[0];
+
+        session_start();
+        $_SESSION['logged_in'] = true;
+        $_SESSION['id'] = $user['idusuario'];
+        $_SESSION['login'] = $login;
+        $_SESSION['senha'] = $senha;
     }
-
-    // Pega o primeiro usuario
-    $user = $users[0];
-
-    session_start();
-    $_SESSION['logged_in'] = true;
-    $_SESSION['login'] = $user['login'];
-    $_SESSION['senha'] = $user['senha'];
 
     header('Location: ../index.php')
 ?>
