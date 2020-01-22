@@ -1,6 +1,9 @@
 <?php
     include_once('../controller/functions.php');
-    include_once('../persistence/config.php');
+    include_once('../controller/config.php');
+    include_once('../model/usuario.php');
+    include_once('../persistence/connection.php');
+    include_once('../persistence/usuarioDAO.php');
 
     // Pega os valores do formulario
     $login = isset($_POST['login']) ? $_POST['login'] : null;
@@ -14,16 +17,16 @@
         exit;
     }
 
-    // Atualiza banco de dados
-    $PDO = db_connect();
-    $sql = "UPDATE `usuario` SET `login` = :login,`senha` = :senha,`nome` = :nome WHERE `login` = :login";
-    $stmt = $PDO->prepare($sql);
-    $stmt->bindParam(':login', $login);
-    $stmt->bindParam(':senha', $senha);
-    $stmt->bindParam(':nome', $nome);
-    echo($sql);
+    // Cria um objeto com os dados
+    $usuarioNovo = new Usuario($login, $senha, $nome);
 
-    if ($stmt->execute()) {
+    // Cria uma conexao com o banco de dados
+    $conexao = new Connection();
+    $conexao = $conexao->getConnection();
+
+    // Tenta realizar a edicao
+    $usuarioDAO = new UsuarioDAO();
+    if ($usuarioDAO->editar($conexao, $usuarioNovo)) {
         header('Location: ../index.php');
     }
     else {

@@ -36,7 +36,7 @@
                 <br>
                 <div align='center'>
                     <form class="" action="../controller/postar.php" method="post">
-                        <textarea name="postagem" cols ="30" rows="5" >Poste o deseja</textarea>
+                        <textarea name="postagem" cols ="30" rows="5" placeholder="Poste o deseja"></textarea>
                         <br>
                         <button type="submit">Postar</button>
                     </form>

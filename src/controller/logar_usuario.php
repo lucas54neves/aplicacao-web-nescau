@@ -4,7 +4,7 @@
 
     // Pega os dados do formulario
     $login = isset($_POST['login']) ? $_POST['login'] : '';
-    $senha = isset($_POST['senha']) ? $_POST['senha'] : '';
+    $senha = null !== (make_hash($_POST['senha'])) ? make_hash($_POST['senha']) : '';
 
     // Valida dados vazios
     if (empty($login) || empty($senha)) {

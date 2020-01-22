@@ -1,4 +1,6 @@
 <?php
+    include_once('../controller/functions.php');
+
     class Usuario {
         private $login;
         private $senha;
@@ -6,7 +8,7 @@
 
         function __construct($login, $senha, $nome) {
             $this->login = $login;
-            $this->senha = $senha;
+            $this->senha = make_hash($senha);
             $this->nome = $nome;
         }
 

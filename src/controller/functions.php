@@ -18,6 +18,13 @@
         return true;
     }
 
+    /**
+    * Cria o hash da senha, usando MD5 e SHA-1
+    */
+    function make_hash($str) {
+        return sha1(md5($str));
+    }
+
     class TableRows extends RecursiveIteratorIterator {
         function __construct($it) {
             parent::__construct($it, self::LEAVES_ONLY);

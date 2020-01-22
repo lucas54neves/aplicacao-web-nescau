@@ -1,6 +1,5 @@
 <?php
     include_once('../controller/functions.php');
-    include_once('../persistence/config.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -13,7 +12,7 @@
     <body>
         <h1>Aplicação WEB Nescau</h1>
         <h2>Tela de Edição</h2>
-        <form action="../controller/editar_usuario.php" method="post">
+        <form action="../controller/editar-usuario.php" method="post">
             <p>Login <input type="text" name="login"></p>
             <p>Senha <input type="password" name="senha"></p>
             <p>Nome <input type="text" name="nome"></p>
