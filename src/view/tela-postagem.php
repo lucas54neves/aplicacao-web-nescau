@@ -13,26 +13,34 @@
         <link rel="icon" href="../../img/logo.jpeg">
         <link rel="stylesheet" href="../../css/master.css">
     </head>
-    <body>
+    <body class="geral">
         <h1>Aplicação WEB Nescau</h1>
         <div id="geral">
             <div id="esquerda">
-                <?php
-                    $conexao = new Connection();
-                    $conexao = $conexao->getConnection();
+                <h1 align='center'>Usuários</h1>
+                <table align='center'>
+                    <?php
+                        $conexao = new Connection();
+                        $conexao = $conexao->getConnection();
 
-                    $usuarioDAO = new UsuarioDAO();
-                    $usuarioDAO->consultar($conexao);
-                ?>
+                        $usuarioDAO = new UsuarioDAO();
+                        $usuarioDAO->consultar($conexao);
+                    ?>
+                </table>
             </div>
             <div id="meio">
-                <?php
-                    $conexao = new Connection();
-                    $conexao = $conexao->getConnection();
+                <h1 align='center'>Postagens</h1>
+                <div class='rolagem'>
+                    <table align='center'>
+                        <?php
+                            $conexao = new Connection();
+                            $conexao = $conexao->getConnection();
 
-                    $postagemDAO = new PostagemDAO();
-                    $postagemDAO->consultar($conexao);
-                ?>
+                            $postagemDAO = new PostagemDAO();
+                            $postagemDAO->consultar($conexao);
+                        ?>
+                    </table>
+                </div>
                 <br>
                 <div align='center'>
                     <form class="" action="../controller/postar.php" method="post">

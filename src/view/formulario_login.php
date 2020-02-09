@@ -6,7 +6,7 @@
         <link rel="icon" href="../../img/logo.jpeg">
         <link rel="stylesheet" href="../../css/master.css">
     </head>
-    <body>
+    <body class="geral">
         <h1>Aplicação WEB Nescau</h1>
         <h2>Formulário de Login</h2>
         <form action="../controller/logar_usuario.php" method="post">

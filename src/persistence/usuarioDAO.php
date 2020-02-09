@@ -31,8 +31,6 @@
 
         // Retorna uma tabela em HTML com todos os usuarios
         function consultar($conexao) {
-            echo "<h1 align='center'>Usuários</h1>";
-            echo "<table align='center'";
             try {
                 $sql = "SELECT `nome` FROM `usuario` WHERE 1";
                 $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -47,7 +45,6 @@
                 echo "Error: " . $e->getMessage();
             }
             $conexao = null;
-            echo "</table>";
         }
 
         // Retorna verdadeiro ou falso se existe um usuario com o login e senha
