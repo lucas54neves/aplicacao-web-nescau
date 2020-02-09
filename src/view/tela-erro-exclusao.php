@@ -8,11 +8,12 @@
     </head>
     <body class="geral">
         <h1>Aplicação WEB Nescau</h1>
-        <h2>Formulário de Login</h2>
-        <form action="../controller/logar_usuario.php" method="post">
-            <p>Login <input type="text" name="login"></p>
-            <p>Senha <input type="password" name="senha"></p>
-            <button type="submit">Logar</button>
+        <h3>Não é possível excluir a conta porque existe postagens cadastradas com o seu usuário.</h2>
+        <form>
+            <button type='submit' formaction='tela-postagem.php'>Voltar para área de postagem</button>
+        </form>
+        <form>
+            <button type='submit' formaction='../controller/sair.php'>Sair</button>
         </form>
     </body>
 </html>

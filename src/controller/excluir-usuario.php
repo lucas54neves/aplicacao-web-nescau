@@ -1,6 +1,7 @@
 <?php
     include_once('../persistence/connection.php');
     include_once('../persistence/usuarioDAO.php');
+    include_once('config.php');
 
     $conexao = new Connection();
     $conexao = $conexao->getConnection();
@@ -10,7 +11,6 @@
         include("sair.php");
     }
     else {
-        echo "Erro ao remover";
-        print_r($stmt->errorInfo());
+        include("../view/tela-erro-exclusao.php");
     }
 ?>

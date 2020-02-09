@@ -7,8 +7,8 @@
     <head>
         <meta charset="utf-8">
         <title>Aplicação WEB Nescau</title>
-        <link rel="icon" href="../img/logo.jpeg">
-        <link rel="stylesheet" href="../css/master.css">
+        <link rel="icon" href="/img/logo.jpeg">
+        <link rel="stylesheet" href="/css/master.css">
     </head>
     <body class="geral">
         <h1>Aplicação WEB Nescau</h1>
