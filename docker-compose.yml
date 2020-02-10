@@ -1,0 +1,40 @@
+version: '3.3'
+
+services:
+    database:
+        image: mysql
+        volumes:
+            - db_data:/var/lib/mysql
+        restart: always
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: myrootpass
+            MYSQL_DATABASE: mydb
+            MYSQL_USER: root
+            MYSQL_PASSWORD: myrootpass
+
+    php:
+        build: .
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./src/:/var/www/html
+        links:
+            - database
+
+    phpmyadmin:
+        depends_on:
+            - database
+        image: phpmyadmin/phpmyadmin
+        restart: always
+        ports:
+            - 88:80
+        environment:
+            PMA_HOST: database:3306
+            PMA_USER: root
+            PMA_PASSWORD: myrootpass
+
+volumes:
+    db_data:
